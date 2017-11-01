@@ -24,7 +24,6 @@ def get_data (filename):
     return
 
 def predict_prices(dates,prices,x):
-    #format list into nX1 array
     dates = np.reshape(dates,(len(dates),1))
     svr_lin = SVR(kernel='linear', C=1e3)
     svr_poly = SVR(kernel='poly', C=1e3, degree=2)
