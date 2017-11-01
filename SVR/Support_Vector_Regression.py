@@ -1,4 +1,9 @@
-# Project uses the scikit-learn machine learning library to train a supper vector regression on the Google stock price dataset to predict a future price.
+# Project uses the scikit-learn machine learning library to train 
+# a support vector regression on the Google stock price dataset 
+# to predict a future price.
+
+# SVR uses the space between points as a margin of error and 
+# predicts the most likely next point in a dataset.
 
 import csv
 import numpy as np
@@ -19,6 +24,7 @@ def get_data (filename):
     return
 
 def predict_prices(dates,prices,x):
+    #format list into nX1 array
     dates = np.reshape(dates,(len(dates),1))
     svr_lin = SVR(kernel='linear', C=1e3)
     svr_poly = SVR(kernel='poly', C=1e3, degree=2)
@@ -35,7 +41,6 @@ def predict_prices(dates,prices,x):
     plt.ylabel('Price')
     plt.title('Support Vector Regression')
     plt.legend()
-    #plt.show()
     plt.savefig('prediction.png')
     
     return svr_rbf.predict(x)[0], svr_lin.predict(x)[0], svr_poly.predict(x)[0]
